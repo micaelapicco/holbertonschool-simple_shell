@@ -11,16 +11,24 @@ int main(int ac, char **av)
 	(void)ac;
 
 	size_t n_bytes = 0;
+	ssize_t error;
 	char *prompt = "$ ", *buffer;
 
+	while (1)
+	{	
 	buffer = malloc(sizeof(1024));
 	if (!buffer)
 		return (-1);
 
 	printf("%s", prompt);
-	getline(&buffer, &n_bytes, stdin);
+	error = getline(&buffer, &n_bytes, stdin);
+		if (error == -1)
+		{
+			printf("end-of-file\n");
+			return (-1);
+		}
 	printf("%s\n", buffer);
-
 	free(buffer);
+	}
 	return (0);
 }
