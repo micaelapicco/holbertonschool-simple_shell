@@ -7,7 +7,8 @@ int main(void)
 {
 	char *buffer, *token, *copy;
 	size_t size = 0;
-	int count = 0;
+	int count = 0, i;
+	char **array;
 
 	buffer = malloc(sizeof(size));
 	if(!buffer)
@@ -15,24 +16,24 @@ int main(void)
 	
 	getline(&buffer, &size, stdin);
 
-	copy = strcpy(copy, buffer);
+	copy = strdup(buffer);
 
 	token = strtok(copy, " ");
-	count++;
 
 	while (token != NULL)
 	{
 		token = strtok(NULL, " ");
 		count++;
 	}
-	token = strtok(buffer, " ");
-	printf("%s\n", token);
 
-	while(count > 1)
+	token = strtok(buffer, " ");
+
+	array = malloc(sizeof(char *) * count);
+	for(i = 0; i < count; i++)
 	{
+		array[i] = strdup(token);
+		printf("%s\n", array[i]);
 		token = strtok(NULL, " ");
-		printf("%s\n", token);
-		count--;
 	}
 	return (0);
 }
