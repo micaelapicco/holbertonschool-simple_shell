@@ -11,7 +11,8 @@ int main()
     ssize_t nread;
     char *buf;
     char path[100];
-    char *args[] = {NULL};
+    char *args[10];
+    int i = 0;
 
     while (1)
     {
@@ -23,15 +24,22 @@ int main()
         buffer[nread-1] = '\0';
 
         buf = strtok(buffer, " ");
+	
+	while (buf != NULL)
+	{
+	args[i] = buf;
+	buf = strtok(NULL, " ");
+	i++;
+	}
+
+	args[i] = NULL;
 
         if (fork() == 0)
         {
-            args[0] = buf;
-            if (execvp(buf, args) == -1)
-            {
-                sprintf(path, "/bin/%s", buf);
-            }
-            exit(EXIT_SUCCESS);
+            	execve(args[0], args, NULL);
+           	sprintf(path, "/bin/%s", args[0]);
+		execve(path, args, NULL),
+	    	exit(EXIT_SUCCESS);
         }
         else
         {
