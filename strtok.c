@@ -3,7 +3,7 @@
  * command_line - function that splits a string and returns an array of each word of the string.
  * Return: strings
  */
-int main(void)
+int token(char)
 {
 	char *buffer, *token, *copy;
 	size_t size = 0;
@@ -35,5 +35,5 @@ int main(void)
 		printf("%s\n", array[i]);
 		token = strtok(NULL, " ");
 	}
-	return (0);
+	return (array);
 }
