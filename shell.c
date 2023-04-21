@@ -3,37 +3,40 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <string.h>
 
-int main (void)
+int main()
 {
-	char *buffer, *copy_buffer, *token, **array;
-	int count = 0, i;
-	size_t size = 1024;
+	char *command = NULL, **argv, *token;
+	size_t size = 0, count = 0;
+	pid_t child;
+	int status;
 
-	while (1)
+	while ((printf("$ ")) && (getline(&command, &size, stdin)) != -1)
 	{
-		buffer = malloc(sizeof(size));
-		if (!buffer)
+		if (!command)
 			return (-1);
-		printf("$ ");
-		getline(&buffer, &size, stdin);
+		argv = malloc(sizeof(char *) * strlen(command));
+		token = strtok(command, "\n ");
+		for (count = 0; token; count++)
+		{
+			argv[count] = strdup(token);
+			token = strtok(NULL, "\n ");
+		}
+	child = fork ();
+	if (child == 0)
+	{	
+		if (execve(argv[0], argv, NULL) == -1)
+			perror("Error\n");
 	}
-	copy_buffer = strdup(buffer);
-	token = strtok(copy_buffer, " ");
-		
-	while (token != NULL)
-	{
-		token = strtok(NULL, " ");
-		count++;
+	if (child == -1)
+	{	perror("Error\n");
+		exit(1);
 	}
-
-	token = strtok(buffer, " ");
-
-	array = malloc(sizeof(char *) * count);
-	for(i = 0; i < count; i++)
-	{
-		array[i] = strdup(token);
-		printf("%s\n", array[i]);
-		token = strtok(NULL, " ");
+	else
+		wait(&status);		
 	}
+	free(command);
+	free(token);
+	return(0);
 }
