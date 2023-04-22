@@ -12,8 +12,10 @@ int main()
 	pid_t child;
 	int status;
 
-	while ((printf("$ ")) && (getline(&command, &size, stdin)) != -1)
+	while (1) 
 	{
+		printf("$ ") 
+		getline(&command, &size, stdin);
 		if (!command)
 			return (-1);
 		argv = malloc(sizeof(char *) * strlen(command));
