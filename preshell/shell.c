@@ -18,8 +18,9 @@ int main()
 		n_chars_read = getline(&command, &size, stdin);
 		if (n_chars_read == -1)
 		{
-			printf("Exit...\n");
-			return(-1);
+			printf("Exit\n");
+			free(command);
+			exit(0);
 		}
 		if (!command)
 			return (-1);
@@ -34,10 +35,11 @@ int main()
 	if (child == 0)
 	{	
 		if (execve(argv[0], argv, NULL) == -1)
-			perror("Error\n");
+			perror("Error");
+			exit(0);
 	}
 	if (child == -1)
-	{	perror("Error\n");
+	{	perror("Error");
 		exit(1);
 	}
 	else
