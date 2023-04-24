@@ -10,12 +10,17 @@ int main()
 	char *command = NULL, **argv, *token;
 	size_t size = 0, count = 0;
 	pid_t child;
+	ssize_t n_chars_read;
 	int status;
 
-	while (1) 
+	while (printf("$ ")) 
 	{
-		printf("$ ") 
-		getline(&command, &size, stdin);
+		n_chars_read = getline(&command, &size, stdin);
+		if (n_chars_read == -1)
+		{
+			printf("Exit...\n");
+			return(-1);
+		}
 		if (!command)
 			return (-1);
 		argv = malloc(sizeof(char *) * strlen(command));
