@@ -27,6 +27,6 @@ int main(void)
 	}
 	free(command);
 	free(argv);
+	printf("\n");
 	return (0);
-
 }
