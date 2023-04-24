@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+
 #define DELIM " \n\t=:"
 
 int count_str(char *str);
