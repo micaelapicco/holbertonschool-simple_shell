@@ -37,8 +37,8 @@ int main()
         if (fork() == 0)
         {
             	execve(args[0], args, NULL);
-           	sprintf(path, "/bin/%s", args[0]);
-		execve(path, args, NULL),
+		sprintf(path, "/bin/%s", args[0]);
+                execve(path, args, NULL);
 	    	exit(EXIT_SUCCESS);
         }
         else
