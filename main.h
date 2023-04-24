@@ -10,7 +10,7 @@
 
 int count_str(char *str);
 char **strtok_str(char *str);
-int main();
+int main(void);
 int execve_str(char **args);
 
 #endif

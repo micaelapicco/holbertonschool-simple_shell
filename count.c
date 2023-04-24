@@ -1,6 +1,6 @@
 #include "main.h"
 /*
-* count - counter of strings tokenized
+* count_str - counter of strings tokenized
 * @str: string
 * Return: counter
 */
@@ -17,5 +17,5 @@ int count_str(char *str)
     }
     free(copy);
     free(token);
-    return(count);
+    return (count);
 }

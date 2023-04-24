@@ -1,16 +1,16 @@
 #include "main.h"
 /**
- * main - execve example
+ * main - main function
  *
- * Return: Always 0.
+ * Return: ouput
  */
-int main()
+int main(void)
 {
 	char *command = NULL, **argv;
 	size_t size = 0;
 	ssize_t n_chars_read;
 
-	while (printf("$ ")) 
+	while (printf("$ "))
 	{
 		n_chars_read = getline(&command, &size, stdin);
 		if (n_chars_read == -1)
@@ -27,5 +27,6 @@ int main()
 	}
 	free(command);
 	free(argv);
-	return(0);
+	return (0);
+
 }

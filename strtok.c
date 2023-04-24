@@ -1,6 +1,6 @@
 #include "main.h"
 /*
-* strtok -  strings tokenized
+* strtok_str -  strings tokenized
 * @str: string
 * Return: array of strings
 */
@@ -13,8 +13,8 @@ char **strtok_str(char *str)
 	copy = strdup(str);
     size = count_str(str);
 	array = malloc(sizeof(char *) * size);
-	
-    if(!array)
+
+    if (!array)
 		return(NULL);
 
 	token = strtok(copy, DELIM);
@@ -23,5 +23,5 @@ char **strtok_str(char *str)
         array[i] = strdup(token);
         token = strtok(NULL, DELIM);
     }
-    return(array);
+    return (array);
 }

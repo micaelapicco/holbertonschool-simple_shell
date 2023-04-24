@@ -1,8 +1,8 @@
 #include "main.h"
 /*
-* strtok -  strings tokenized
-* @str: string
-* Return: array of strings
+* execve_str -  execute
+* @args: args getline
+* Return: nothing
 */
 int execve_str(char **args)
 {
