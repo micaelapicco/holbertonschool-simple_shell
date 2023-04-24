@@ -1,18 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <string.h>
 #include "main.h"
-
+/**
+ * main - execve example
+ *
+ * Return: Always 0.
+ */
 int main()
 {
 	char *command = NULL, **argv;
 	size_t size = 0;
-	pid_t child;
 	ssize_t n_chars_read;
-	int status;
 
 	while (printf("$ ")) 
 	{
@@ -27,21 +23,7 @@ int main()
 			return (-1);
 		argv = strtok_str(command);
 
-	child = fork ();
-	if (child == 0)
-	{	
-		if (execve(argv[0], argv, NULL) == -1)
-		{
-			perror("Error");
-			exit(0);
-		}
-	}
-	if (child == -1)
-	{	perror("Error");
-		exit(1);
-	}
-	else
-		wait(&status);		
+	execve_str(argv);
 	}
 	free(command);
 	free(argv);
