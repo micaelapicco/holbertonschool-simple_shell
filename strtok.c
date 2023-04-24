@@ -15,7 +15,7 @@ char **strtok_str(char *str)
 	array = malloc(sizeof(char *) * size);
 
 	if (!array)
-		return(NULL);
+		return (NULL);
 
 	token = strtok(copy, DELIM);
 	for (i = 0; i < size; i++)
@@ -23,5 +23,6 @@ char **strtok_str(char *str)
 		array[i] = strdup(token);
 		token = strtok(NULL, DELIM);
 	}
+	printf("\n");
 	return (array);
 }
