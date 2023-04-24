@@ -15,13 +15,13 @@ char **strtok_str(char *str)
 	array = malloc(sizeof(char *) * size);
 
 	if (!array)
-	return (NULL);
+		return(NULL);
 
 	token = strtok(copy, DELIM);
 	for (i = 0; i < size; i++)
 	{
-	array[i] = strdup(token);
-	token = strtok(NULL, DELIM);
+		array[i] = strdup(token);
+		token = strtok(NULL, DELIM);
 	}
-return (array);
+	return (array);
 }

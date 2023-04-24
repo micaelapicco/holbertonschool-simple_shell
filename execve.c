@@ -10,12 +10,12 @@ int execve_str(char **args)
 
 	if (child == -1)
 	{
-	perror("Error");
-	return (1);
+		perror("Error");
+		return (1);
 	}
 	else if (child == 0)
-	execve(args[0], args, NULL);
+		execve(args[0], args, NULL);
 	else
-	wait(NULL);
-return (0);
+		wait(NULL);
+	return (0);
 }

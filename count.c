@@ -13,7 +13,7 @@ int count_str(char *str)
 	token = strtok(copy, DELIM);
 	for (count = 0; token; count++)
 	{
-	token = strtok(NULL, DELIM);
+		token = strtok(NULL, DELIM);
 	}
 	free(copy);
 	free(token);
