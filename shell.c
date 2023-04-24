@@ -35,8 +35,10 @@ int main()
 	if (child == 0)
 	{	
 		if (execve(argv[0], argv, NULL) == -1)
+		{
 			perror("Error");
 			exit(0);
+		}
 	}
 	if (child == -1)
 	{	perror("Error");

@@ -4,7 +4,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-//int main(int ac, char **av);
-int command_line(void);
-int token(char);
+#define DELIM " \n\t=:"
+
+int count_str(char *str);
+
 #endif
