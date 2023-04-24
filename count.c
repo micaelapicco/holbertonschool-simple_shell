@@ -1,5 +1,5 @@
 #include "main.h"
-/*
+/**
 * count_str - counter of strings tokenized
 * @str: string
 * Return: counter

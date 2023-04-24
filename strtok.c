@@ -1,6 +1,6 @@
 #include "main.h"
-/*
-* strtok_str -  strings tokenized
+/**
+* strtok_str - strings tokenized
 * @str: string
 * Return: array of strings
 */
