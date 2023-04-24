@@ -4,11 +4,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include "main.h"
 
 int main()
 {
-	char *command = NULL, **argv, *token;
-	size_t size = 0, count = 0;
+	char *command = NULL, **argv;
+	size_t size = 0;
 	pid_t child;
 	ssize_t n_chars_read;
 	int status;
@@ -18,19 +19,14 @@ int main()
 		n_chars_read = getline(&command, &size, stdin);
 		if (n_chars_read == -1)
 		{
-			printf("Exit\n");
+			printf("Exit...\n");
 			free(command);
 			exit(0);
 		}
 		if (!command)
 			return (-1);
-		argv = malloc(sizeof(char *) * strlen(command));
-		token = strtok(command, "\n ");
-		for (count = 0; token; count++)
-		{
-			argv[count] = strdup(token);
-			token = strtok(NULL, "\n ");
-		}
+		argv = strtok_str(command);
+
 	child = fork ();
 	if (child == 0)
 	{	
@@ -48,6 +44,6 @@ int main()
 		wait(&status);		
 	}
 	free(command);
-	free(token);
+	free(argv);
 	return(0);
 }

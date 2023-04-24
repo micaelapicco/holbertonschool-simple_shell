@@ -7,5 +7,7 @@
 #define DELIM " \n\t=:"
 
 int count_str(char *str);
+char **strtok_str(char *str);
+int main();
 
 #endif
