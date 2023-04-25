@@ -12,11 +12,11 @@ char *getenv_str(char *str)
 
 	for (; environ[i]; i++)
 	{
-        if (strncmp(environ[i], str, len) == 0 && environ[i][len] == '=')
+		if (strncmp(environ[i], str, len) == 0 && environ[i][len] == '=')
 		{ 
 			buffer = environ[i] + len + 1;
-        	return (buffer);
-        }
-    }
+			return (buffer);
+		}
+	}
 return (NULL);
 }
