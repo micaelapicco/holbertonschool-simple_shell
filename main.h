@@ -13,5 +13,6 @@ int count_str(char *str);
 char **strtok_str(char *str);
 int main(void);
 int execve_str(char **args);
+char *getenv_str(const char *name);
 
 #endif

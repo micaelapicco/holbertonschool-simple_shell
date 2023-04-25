@@ -21,9 +21,11 @@ int main(void)
 		}
 		if (!command)
 			return (-1);
+		
 		argv = strtok_str(command);
-
-	execve_str(argv);
+		if (getenv_str(command))
+		{	printf("%s", command);
+			execve_str(argv);}
 	}
 	free(command);
 	free(argv);
