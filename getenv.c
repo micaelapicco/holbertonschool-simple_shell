@@ -10,7 +10,7 @@ char *getenv_str(char *str)
 
 	len = strlen(str);    
 
-	for (; environ[i] != NULL; i++)
+	for (; environ[i]; i++)
 	{
         if (strncmp(environ[i], str, len) == 0 && environ[i][len] == '=')
 		{ 
