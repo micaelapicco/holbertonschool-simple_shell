@@ -2,18 +2,20 @@
 
 extern char **environ;
 
-char *getenv_str(const char *name)
+char *getenv_str(char *str)
 {
-	int name2;
+	char *buffer = NULL;
+	int len;
 	int i = 0;
 
-	name2 = strlen(name);    
+	len = strlen(str);    
 
 	for (; environ[i] != NULL; i++)
 	{
-        if (strncmp(environ[i], name, name2) == 0 && environ[i][name2] == '=')
-	{
-        return (&environ[i][name2+1]);
+        if (strncmp(environ[i], str, len) == 0 && environ[i][len] == '=')
+		{ 
+			buffer = environ[i] + len + 1;
+        	return (buffer);
         }
     }
 return (NULL);

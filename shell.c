@@ -10,8 +10,9 @@ int main(void)
 	size_t size = 0;
 	ssize_t n_chars_read;
 
-	while (printf("$ "))
+	while (1)
 	{
+		printf("$ ");
 		n_chars_read = getline(&command, &size, stdin);
 		if (n_chars_read == -1)
 		{
@@ -23,9 +24,10 @@ int main(void)
 			return (-1);
 		
 		argv = strtok_str(command);
-		if (getenv_str(command))
-		{	printf("%s", command);
-			execve_str(argv);}
+		execve_str(argv);
+		if (getenv_str(command) == NULL)
+			perror("Error getenv");
+
 	}
 	free(command);
 	free(argv);
