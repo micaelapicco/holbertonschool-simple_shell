@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	char *command = NULL, **argv;
+	char *command = NULL, **argv, *command_temp = NULL, *p = NULL, *full_path = NULL;
 	size_t size = 0;
 	ssize_t n_chars_read;
 
@@ -22,15 +22,16 @@ int main(void)
 		}
 		if (!command)
 			return (-1);
+		command_temp = strdup(command);
+		argv = strtok_str(command_temp);
+		p = getenv_str("PATH");
+		full_path = which_str(p, argv);
 		
-		argv = strtok_str(command);
 		execve_str(argv);
 		if (getenv_str(command) == NULL)
 			perror("Error getenv");
 
 	}
-	free(command);
-	free(argv);
 	printf("\n");
 	return (0);
 }
