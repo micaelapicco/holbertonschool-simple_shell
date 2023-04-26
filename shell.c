@@ -27,7 +27,7 @@ int main(void)
 		p = getenv_str("PATH");
 		full_path = which_str(p, argv);
 		
-		execve_str(argv);
+		execve_str(argv, full_path);
 		if (getenv_str(command) == NULL)
 			perror("Error getenv");
 

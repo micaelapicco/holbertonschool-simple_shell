@@ -19,6 +19,7 @@ char *which_str(char *p, char **argv)
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
+		strcat(full_path, '\0');
 		if (full_path == 0)
 		{
 			free(copy);
