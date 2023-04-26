@@ -14,5 +14,6 @@ char **strtok_str(char *str);
 int main(void);
 int execve_str(char **args);
 char *getenv_str(char *str);
+char *which_str(char *p, char **argv);
 
 #endif
