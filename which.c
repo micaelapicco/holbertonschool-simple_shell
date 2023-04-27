@@ -13,7 +13,6 @@ char *which_str(char *path, char **argv)
 	if ((access(argv[0], F_OK) == 0))
 		return(argv[0]);
 
-
     copy = strdup(path);
     token = strtok(copy, ":");
 
@@ -21,9 +20,8 @@ char *which_str(char *path, char **argv)
 
 	if (!full_path)
 		{
-			free(copy);
-			free(token);
 			free(full_path);
+			free(copy);
 			return (0);
 		}
 	
@@ -34,6 +32,8 @@ char *which_str(char *path, char **argv)
 		strcat(full_path, argv[0]);
 		if (access(full_path, F_OK) == 0)
 		{
+			free(argv[0]);
+			argv[0] = full_path;
 			free(copy);
 			return (full_path);
 		}

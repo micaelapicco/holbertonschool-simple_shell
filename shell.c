@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	char *command = NULL, **argv, *command_temp = NULL, *p = NULL, *full_path = NULL;
+	char *command = NULL, **argv, *command_temp = NULL, *p = NULL;
 	size_t size = 0, i = 0;
 	ssize_t n_chars_read;
 
@@ -20,23 +20,24 @@ int main(void)
 			free(command);
 			exit(0);
 		}
+		/* verificar si hay una linea vacia */
 		command[n_chars_read -1] = '\0';
-		if (!command)
-			return (-1);
+
 		command_temp = strdup(command);
 		argv = strtok_str(command_temp);
 
 		p = getenv_str("PATH");
 
-		full_path = which_str(p, argv);
-		execve_str(full_path, argv);
+		which_str(p, argv);
+		/* NO llamar a esta funcion si no se encontro el comando (ejemplos: slkf, /usr/bsad)*/
+		execve_str(argv);
+		
 		free(command_temp);
 		for (i = 0; argv[i]; i++)
 		{
 			free(argv[i]);
 		}
 		free(argv);
-		free(full_path);
 	}
 	return (0);
 }
