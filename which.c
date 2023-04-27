@@ -10,11 +10,12 @@ char *which_str(char *path, char **argv)
 {
     char *copy = NULL, *token = NULL, *full_path = NULL;
 
-    copy = strdup(path);
-    token = strtok(copy, DELIM);
-
 	if ((access(argv[0], F_OK) == 0))
 		return(argv[0]);
+
+
+    copy = strdup(path);
+    token = strtok(copy, ":");
 
     full_path = malloc(sizeof(char) * (strlen(path) + strlen(argv[0])) + 2);
 
@@ -25,17 +26,15 @@ char *which_str(char *path, char **argv)
 			free(full_path);
 			return (0);
 		}
-	printf("token: %s", token);
+	
     while (token)
 	{
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
-		printf("full path: %s", full_path);
 		if (access(full_path, F_OK) == 0)
 		{
 			free(copy);
-			free(token);
 			return (full_path);
 		}
 

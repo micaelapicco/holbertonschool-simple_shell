@@ -4,7 +4,7 @@
 * @args: args getline
 * Return: nothing
 */
-void execve_str(char *p, char **args)
+void execve_str(char *path, char **args)
 {
 	pid_t child = fork();
 
@@ -14,7 +14,7 @@ void execve_str(char *p, char **args)
 		return;
 	}
 	else if (child == 0)
-		execve(p, args, NULL);
+		execve(path, args, environ);
 	else
 		wait(NULL);
 	return;

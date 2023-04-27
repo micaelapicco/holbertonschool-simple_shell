@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <stdarg.h>
 
-#define DELIM " \n\t=:"
+extern char **environ;
 
 int count_str(char *str);
 char **strtok_str(char *str);

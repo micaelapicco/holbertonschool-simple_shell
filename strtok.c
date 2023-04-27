@@ -7,21 +7,23 @@
 char **strtok_str(char *str)
 {
 	char *token, *copy;
-	size_t size, i = 1;
+	size_t size, i = 0;
 	char **array;
 
 	copy = strdup(str);
 	size = count_str(str);
-	array = malloc(sizeof(char *) * size);
+	array = malloc(sizeof(char *) * (size + 1));
 
 	if (!array)
 		return(NULL);
 
-	token = strtok(copy, DELIM);
-	for (i = 0; i < size; i++)
+	token = strtok(copy, " \t");
+	for (; i < size; i++)
 	{
 		array[i] = strdup(token);
-		token = strtok(NULL, DELIM);
+		token = strtok(NULL, " \t");
 	}
+	array[i] = NULL;
+	free(copy);
 	return (array);
 }

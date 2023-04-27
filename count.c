@@ -10,12 +10,11 @@ int count_str(char *str)
 	char *copy, *token;
 
 	copy = strdup(str);
-	token = strtok(copy, DELIM);
+	token = strtok(copy, " \t");
 	for (count = 0; token; count++)
 	{
-		token = strtok(NULL, DELIM);
+		token = strtok(NULL, " \t");
 	}
 	free(copy);
-	free(token);
 	return (count);
 }
