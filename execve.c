@@ -4,18 +4,18 @@
 * @args: args getline
 * Return: nothing
 */
-int execve_str(char **args)
+void execve_str(char *p, char **args)
 {
 	pid_t child = fork();
 
 	if (child == -1)
 	{
 		perror("Error");
-		return (1);
+		return;
 	}
 	else if (child == 0)
-		execve(args[0], args, NULL);
+		execve(p, args, NULL);
 	else
 		wait(NULL);
-	return (0);
+	return;
 }

@@ -2,34 +2,46 @@
 /**
  * which_str - Checks if the input is a path. If not, tokenizes PATH
  * variable and generate differentes paths
- * @p: path
+ * @path: path
  * @argv: arguments
  * Return: full path
  */
-char *which_str(char *p, char **argv)
+char *which_str(char *path, char **argv)
 {
     char *copy = NULL, *token = NULL, *full_path = NULL;
 
-    copy = strdup(p);
-    token = strtok(copy, ":");
-    
+    copy = strdup(path);
+    token = strtok(copy, DELIM);
+
+	if ((access(argv[0], F_OK) == 0))
+		return(argv[0]);
+
+    full_path = malloc(sizeof(char) * (strlen(path) + strlen(argv[0])) + 2);
+
+	if (!full_path)
+		{
+			free(copy);
+			free(token);
+			free(full_path);
+			return (0);
+		}
+	printf("token: %s", token);
     while (token)
 	{
-		full_path = malloc(sizeof(strlen(token) + sizeof(strlen(argv[0])+ 2)));
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
-		strcat(full_path, '\0');
-		if (full_path == 0)
+		printf("full path: %s", full_path);
+		if (access(full_path, F_OK) == 0)
 		{
 			free(copy);
+			free(token);
 			return (full_path);
 		}
-		free(full_path);
+
 		token = NULL;
 		token = strtok(NULL, ":");
 	}
-	free(copy);
 	return (0);
 
 }

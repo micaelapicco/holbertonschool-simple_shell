@@ -5,8 +5,7 @@ extern char **environ;
 char *getenv_str(char *str)
 {
 	char *buffer = NULL;
-	int len;
-	int i = 0;
+	int len, i = 0;
 
 	len = strlen(str);    
 

@@ -23,15 +23,16 @@ int main(void)
 		if (!command)
 			return (-1);
 		command_temp = strdup(command);
+		printf("comand_temp: %s\n", command_temp);
 		argv = strtok_str(command_temp);
+
 		p = getenv_str("PATH");
+		printf("path: %s\n", p);
+
 		full_path = which_str(p, argv);
-		
-		execve_str(argv, full_path);
-		if (getenv_str(command) == NULL)
-			perror("Error getenv");
+		printf("full_path: %s\n", full_path);
+		execve_str(full_path, argv);
 
 	}
-	printf("\n");
 	return (0);
 }
