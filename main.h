@@ -18,5 +18,6 @@ int main(void);
 void execve_str(char **argv);
 char *which_str(char *p, char **argv);
 char *getenv_str(char *str);
+int empty_line(char *input);
 
 #endif

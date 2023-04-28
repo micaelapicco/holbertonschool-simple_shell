@@ -15,7 +15,7 @@ void execve_str(char **argv)
 	}
 	else if (child == 0)
 	{	
-		if (execve(argv[0], argv, environ) == -1) /* Checkear error de execve (-1) */
+		if (execve(argv[0], argv, environ) == -1)
 			{
 				perror("Error");
 				exit(1);
