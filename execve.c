@@ -6,7 +6,7 @@
 */
 void execve_str(char **argv)
 {
-	pid_t child = fork();
+	pid_t child = fork ();
 
 	if (child == -1)
 	{
@@ -14,7 +14,13 @@ void execve_str(char **argv)
 		return;
 	}
 	else if (child == 0)
-		execve(argv[0], argv, environ); /* Checkear error de execve (-1) */
+	{	
+		if (execve(argv[0], argv, environ) == -1) /* Checkear error de execve (-1) */
+			{
+				perror("Error");
+				exit(1);
+			}
+	}
 	else
 		wait(NULL);
 	return;

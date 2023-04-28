@@ -13,14 +13,17 @@ int main(void)
 
 	while (1)
 	{
-		if (interative_mode == 1)
+		if (interative_mode)
+		{	
 			printf("$ ");
-
+			fflush(stdout);
+		}
 		n_chars_read = getline(&command, &size, stdin);
 
 		if (n_chars_read == -1)
 		{
 			free(command);
+			printf("\n");
 			exit(0);
 		}
 		/* verificar si hay una linea vacia */
