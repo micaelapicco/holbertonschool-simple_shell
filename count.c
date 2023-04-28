@@ -1,15 +1,15 @@
 #include "main.h"
 /**
-* count_str - counter of strings tokenized
-* @str: string
+* count_str - counter of inputings tokenized
+* @input: input
 * Return: counter
 */
-int count_str(char *str)
+int count_str(char *input)
 {
 	int count = 0;
 	char *copy, *token;
 
-	copy = strdup(str);
+	copy = strdup(input);
 	token = strtok(copy, " \t");
 	for (count = 0; token; count++)
 	{

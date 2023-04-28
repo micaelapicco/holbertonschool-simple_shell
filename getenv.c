@@ -1,19 +1,21 @@
 #include "main.h"
-
-extern char **environ;
-
-char *getenv_str(char *str)
+/**
+ * getenv_str - get environ and save the environ
+ * @env: environ
+ * Return: environ in format string
+*/
+char *getenv_str(char *env)
 {
 	char *buffer = NULL;
 	int len, i = 0;
 
-	len = strlen(str);    
+	len = strlen(env);
 	if (environ)
 	{
 		for (; environ[i]; i++)
 	{
-		if (strncmp(environ[i], str, len) == 0 && environ[i][len] == '=')
-		{ 
+		if (strncmp(environ[i], env, len) == 0 && environ[i][len] == '=')
+		{
 			buffer = environ[i] + len + 1;
 			return (buffer);
 		}

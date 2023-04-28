@@ -6,8 +6,7 @@
 */
 int empty_line(char *input)
 {
-    if (strcmp(input, "\n") == 0)
-        return (0);
-    
-    return (1);
+	if (strcmp(input, "\n") == 0)
+		return (0);
+	return (1);
 }

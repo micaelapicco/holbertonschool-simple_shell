@@ -13,7 +13,7 @@ int main(void)
 	while (1)
 	{
 		if (interative_mode)
-		{	
+		{
 			printf("$ ");
 			fflush(stdout);
 		}
@@ -33,14 +33,12 @@ int main(void)
 		}
 		if (empty_line(command) == 0)
 			continue;
-		command[n_chars_read -1] = '\0';
+		command[n_chars_read - 1] = '\0';
 		command_temp = strdup(command);
 		argv = strtok_str(command_temp);
 		if (argv && argv[0] == NULL)
 		{
-			free(command_temp);
-			free(argv[0]);
-			free(argv);
+			free(command_temp), free(argv[0]), free(argv);
 			continue;
 		}
 		p = getenv_str("PATH");

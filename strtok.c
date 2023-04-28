@@ -15,7 +15,7 @@ char **strtok_str(char *str)
 	array = malloc(sizeof(char *) * (size + 1));
 
 	if (!array)
-		return(NULL);
+		return (NULL);
 
 	token = strtok(copy, " \t");
 	for (i = 0; i < size; i++)

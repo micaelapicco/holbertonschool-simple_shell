@@ -1,27 +1,27 @@
 #include "main.h"
 /**
 * execve_str -  execute
-* @args: args getline
+* @argv: args getline
 * Return: nothing
 */
-void execve_str(char **argv)
+int execve_str(char **argv)
 {
-	pid_t child = fork ();
+	pid_t child = fork();
 
 	if (child == -1)
 	{
 		perror("Error");
-		return;
+		return (1);
 	}
 	else if (child == 0)
-	{	
+	{
 		if (execve(argv[0], argv, environ) == -1)
-			{
-				perror("Error");
-				exit(1);
-			}
+		{
+			perror("Error");
+			exit(1);
+		}
 	}
 	else
 		wait(NULL);
-	return;
+	return (0);
 }
