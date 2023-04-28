@@ -9,14 +9,17 @@ int main(void)
 	char *command = NULL, **argv, *command_temp = NULL, *p = NULL;
 	size_t size = 0, i = 0;
 	ssize_t n_chars_read;
+	int interative_mode = isatty(STDIN_FILENO);
 
 	while (1)
 	{
-		printf("$ ");
+		if (interative_mode == 1)
+			printf("$ ");
+
 		n_chars_read = getline(&command, &size, stdin);
+
 		if (n_chars_read == -1)
 		{
-			printf("Exit...\n");
 			free(command);
 			exit(0);
 		}
