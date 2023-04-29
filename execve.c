@@ -10,15 +10,15 @@ int execve_str(char **argv)
 
 	if (child == -1)
 	{
-		perror("Error");
-		return (1);
+		fprintf(stderr, "./hsh: 1: %s: not found", argv[0]);
+		exit (127);
 	}
 	else if (child == 0)
 	{
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("Error");
-			exit(1);
+			exit(0);
 		}
 	}
 	else

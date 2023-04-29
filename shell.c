@@ -42,7 +42,7 @@ int main(void)
 		p = getenv_str("PATH");
 		which_str(p, argv);
 		execve_str(argv);
-		free_array(argv);
+		free_array(argv), free(command_temp);
 	}
 	return (0);
 }
