@@ -1,13 +1,13 @@
 #include "main.h"
 /**
- * main - main function
- *
- * Return: ouput
+ * main - main function, determinate if input is interative mode
+ * or non interactive and execute if exist command
+ * Return: command executed or mesagge error if fail input
  */
 int main(void)
 {
 	char *command = NULL, **argv, *command_temp = NULL, *p = NULL;
-	size_t size = 0, i = 0, interative_mode = isatty(STDIN_FILENO);
+	size_t size = 0, interative_mode = isatty(STDIN_FILENO);
 	ssize_t n_chars_read;
 
 	while (1)
@@ -18,7 +18,7 @@ int main(void)
 			fflush(stdout);
 		}
 		n_chars_read = getline(&command, &size, stdin);
-		
+
 		if (strcmp(command, "exit\n") == 0)
 		{
 			free(command);
@@ -42,12 +42,7 @@ int main(void)
 		p = getenv_str("PATH");
 		which_str(p, argv);
 		execve_str(argv);
-		free(command_temp);
-		for (i = 0; argv[i]; i++)
-		{
-			free(argv[i]);
-		}
-		free(argv);
+		free_array(argv);
 	}
 	return (0);
 }

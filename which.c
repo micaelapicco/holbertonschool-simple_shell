@@ -36,7 +36,6 @@ char *which_str(char *path, char **argv)
 			free(copy);
 			return (full_path);
 		}
-
 		token = NULL;
 		token = strtok(NULL, ":");
 	}
