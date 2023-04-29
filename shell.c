@@ -18,7 +18,6 @@ int main(void)
 			fflush(stdout);
 		}
 		n_chars_read = getline(&command, &size, stdin);
-
 		if (strcmp(command, "exit\n") == 0)
 		{
 			free(command);
@@ -30,8 +29,6 @@ int main(void)
 			exit(0);
 		}
 		command[n_chars_read - 1] = '\0';
-		if (empty_line(command) == 0)
-			continue;
 		command_temp = strdup(command);
 		argv = strtok_str(command_temp);
 		if (argv && argv[0] == NULL)

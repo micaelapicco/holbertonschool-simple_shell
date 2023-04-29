@@ -20,9 +20,8 @@ char *which_str(char *path, char **argv)
 
 	if (!full_path)
 	{
-		free(full_path);
-		free(copy);
-		return (0);
+		free(full_path), free(copy);
+		exit(2);
 	}
 	while (token)
 	{
@@ -39,5 +38,5 @@ char *which_str(char *path, char **argv)
 		token = NULL;
 		token = strtok(NULL, ":");
 	}
-	return (0);
+	exit(2);
 }
