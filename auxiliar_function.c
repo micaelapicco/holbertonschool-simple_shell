@@ -38,11 +38,15 @@ int empty_line(char *input)
 */
 void free_array(char *array[])
 {
-	int i = 0;
+	int i = 0, j = 0;
 
-	for (i = 0; array[i]; i++)
-	{
-		free(array[i]);
-	}
+	if (!array)
+		return;
+	while (array[i])
+		i++;
+
+	for (; j < i; j++)
+		free(array[j]);
+
 	free(array);
 }
