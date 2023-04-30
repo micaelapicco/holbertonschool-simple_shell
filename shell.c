@@ -37,7 +37,8 @@ int main(void)
 			continue;
 		}
 		p = getenv_str("PATH");
-		which_str(p, argv);
+		if (which_str(p, argv) == 0)
+			dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", argv[0]);
 		execve_str(argv);
 		free_array(argv), free(command_temp);
 	}
