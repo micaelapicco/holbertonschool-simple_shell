@@ -18,7 +18,6 @@ int main(void);
 int execve_str(char **argv);
 char *which_str(char *p, char **argv);
 char *getenv_str(char *str);
-int empty_line(char *input);
 void free_array(char *array[]);
 
 #endif
